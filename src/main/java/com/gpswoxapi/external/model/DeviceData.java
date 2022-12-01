@@ -1,48 +1,48 @@
 package com.gpswoxapi.external.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.annotation.Generated;
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.*;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Entity
-@Getter
-@Setter
-@Table(name = "DeviceData")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "id",
         "user_id",
+        "active",
         "name",
-        "online"
+        "sensors",
+        "users"
 })
+@Getter
+@Setter
+@NoArgsConstructor
 public class DeviceData {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty("id")
-    private Integer id;
-
+    public Integer id;
     @JsonProperty("user_id")
-    private Integer userId;
-
+    public Integer userId;
+    @JsonProperty("active")
+    public Integer active;
     @JsonProperty("name")
-    private String name;
+    public String name;
+    @JsonProperty("sensors")
+    public List<Sensor> sensors;
 
-    @JsonProperty("online")
-    private String status;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "deviceData", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("device_data")
-    private List<Sensor> sensorList = new ArrayList<>();
-
+    @JsonProperty("users")
+    public Users users;
 
 
 }
+

@@ -1,21 +1,25 @@
 package com.gpswoxapi.external.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "id",
+        "email"
+})
 public class UserDto {
 
-    @NotNull
-    private String email;
-    @NotNull
-    private String password;
+
+    @JsonProperty("id")
+    public Integer id;
+
+    @JsonProperty("email")
+    public String email;
 
 
 }

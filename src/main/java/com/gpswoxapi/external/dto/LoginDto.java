@@ -6,20 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class DevicesDto {
+public class LoginDto {
 
+    @JsonProperty("email")
+    private String email;
 
-    @JsonProperty("lang")
-    private String lang;
-
-    @JsonProperty("user_api_hash")
-    private String userApiHash;
-
-
+    @JsonProperty("password")
+    private String password;
 
 
 }
